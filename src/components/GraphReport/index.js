@@ -1,16 +1,16 @@
 import React from "react";
-import { ResponsiveLine } from '@nivo/line'
+import {ResponsiveLine} from '@nivo/line'
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const GraphReport = ({ data /* see data tab */ }) => (
+const GraphReport = ({data /* see data tab */}) => (
     <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+        margin={{top: 50, right: 110, bottom: 50, left: 60}}
+        xScale={{type: 'point'}}
+        yScale={{type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false}}
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -31,11 +31,11 @@ const GraphReport = ({ data /* see data tab */ }) => (
             legendOffset: -40,
             legendPosition: 'middle'
         }}
-        colors={{ scheme: 'nivo' }}
+        colors={{scheme: 'nivo'}}
         pointSize={10}
-        pointColor={{ theme: 'background' }}
+        pointColor={{theme: 'background'}}
         pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
+        pointBorderColor={{from: 'serieColor'}}
         pointLabel="y"
         pointLabelYOffset={-12}
         useMesh={true}

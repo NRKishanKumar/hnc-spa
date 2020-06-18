@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
+import {withRouter} from "react-router-dom";
 import Stories from "../ListItem";
 import Loader from "../Loader";
 import "./styles.css"
@@ -10,8 +9,7 @@ import algoliaApi from "../../services/algoliaApi";
 const Dashboard = props => {
     const [state, setState] = useState([]);
     const [page, setPage] = useState(0);
-    const [plotData, setPlotData] = useState([
-        {
+    const [plotData, setPlotData] = useState([{
             "data": []
         }]);
     const [count, setCount] = useState(20);
@@ -40,8 +38,7 @@ const Dashboard = props => {
     };
 
     const formatComponent = (item, callback) => {
-        console.log(item);
-        var retro = item.slice(0).map(elem => {
+        let retro = item.slice(0).map(elem => {
             return {
                 x: elem.item,
                 y: elem.score
@@ -55,7 +52,7 @@ const Dashboard = props => {
     };
     useEffect(() => {
         // function executes here ,calling two async function
-        getData(checkRoute(), 0, 20).then(arr => {
+        getData(checkRoute()).then(arr => {
             getDetails(arr).then(item =>
                 formatComponent(item, () => {
                     props.hideLoader();
@@ -65,11 +62,11 @@ const Dashboard = props => {
     }, []);
 
     //getting all the data ids and storing them in an array
-    const getData = async function(category) {
+    const getData = async function (category) {
         const arr = [];
         try {
             let response = await algoliaApi.getStoryByType(category)
-            setPage(response.page + 1);
+            setPage(response.page);
             response && response.hits.map(item => arr.push(item.objectID));
             console.log("length of algoliza data", response.hits.length)
         } catch (error) {
@@ -79,9 +76,10 @@ const Dashboard = props => {
     };
 
     //fetching data from those ids and storing only the necessary datas in an array
-    const getDetails = async function(arr) {
+    const getDetails = async function (arr) {
+        console.log(arr, "what it is");
         const promises = arr.map(async item => {
-            const data  = await algoliaApi.getStoryObj(item);
+            const data = await algoliaApi.getStoryObj(item);
             return {
                 item,
                 author: data.author,
@@ -99,11 +97,15 @@ const Dashboard = props => {
         return results;
     };
 
-    const showNextContent = (next) => {
-        setLoading(true);
-        let nextPage = next === "next" ? page + 1 : page - 1;
-        algoliaApi.getByPageNo(checkRoute(), nextPage).then(arr => {
-            getDetails(arr).then(item => {
+    const getPaginatedData = (pageNumber) => {
+        algoliaApi.getByPageNo(checkRoute(), pageNumber).then(arr => {
+            let itemsIds = [];
+            arr && arr.hits.map(item => {
+                itemsIds.push(item.objectID);
+                return item;
+            });
+            setPage(arr.page);
+            getDetails(itemsIds).then(item => {
                 formatComponent(item, () => {
                     setCount(page*20);
                     setLoading(false);
@@ -113,11 +115,41 @@ const Dashboard = props => {
         })
     }
 
+    const showNextContent = (next) => {
+        setLoading(true);
+        let nextPage = next === "next" ? page + 1 : page - 1;
+        getPaginatedData(nextPage);
+    }
+
+
+    /**
+     * @desc business logic
+     * @param e
+     */
+    const hide = function (index) {
+        algoliaApi.hideElem(this.index, page)
+            .then(success => {
+                getPaginatedData(page);
+            });
+    }
+
+    /**
+     * @desc business logic
+     * @param e
+     */
+    const upVote = function (item, fromPage) {
+        console.log("upvote", item, fromPage);
+        algoliaApi.upVote(item, fromPage)
+            .then(success => {
+                getPaginatedData(fromPage);
+            });
+    }
+
     //return statement
     return (
         <>
             {props.isLoading ? (
-                <Loader />
+                <Loader/>
             ) : (
                 <>
                     <div
@@ -129,7 +161,7 @@ const Dashboard = props => {
                     >
                         <table className="table">
                             <tbody>
-                            <Stories state={state} />
+                            <Stories state={state} page={page} upVote={upVote} hide={hide}/>
                             </tbody>
                         </table>
                     </div>

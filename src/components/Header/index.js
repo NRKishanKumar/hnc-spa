@@ -1,16 +1,16 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {Navbar, Nav} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
-const Header = ({ showLoader }) => {
-  return (
-    <Navbar style={{ backgroundColor: " #ff6600" }}>
-      <Navbar.Brand href="#home" style={{ color: "#fff" }}>
-        <Link
-          to="/"
-          style={{ color: "#fff", textDecoration: "none" }}
-          onClick={showLoader}
-        >
+const Header = ({showLoader}) => {
+    return (
+        <Navbar style={{backgroundColor: " #ff6600"}}>
+            <Navbar.Brand href="#home" style={{color: "#fff"}}>
+                <Link
+                    to="/"
+                    style={{color: "#fff", textDecoration: "none"}}
+                    onClick={showLoader}
+                >
           <span className="logo">
             <i
                 className="fa fa-hacker-news"
@@ -22,22 +22,22 @@ const Header = ({ showLoader }) => {
                 }}
             />
           </span> Hacker News
-        </Link>
-      </Navbar.Brand>
+                </Link>
+            </Navbar.Brand>
 
-      <Nav className="ml-auto">
-        <a
-          href="/"
-          className="source"
-          // target="_blank"
-          // rel="noopener noreferrer"
-          style={{ textDecoration: "none" }}
-        >
-          <i className="fa fa-refresh" style={{ fontSize: "20px" }} /> Reset
-        </a>
-      </Nav>
-    </Navbar>
-  );
+            <Nav className="ml-auto">
+                <a
+                    href="/"
+                    className="source"
+                    // target="_blank"
+                    // rel="noopener noreferrer"
+                    style={{textDecoration: "none"}}
+                >
+                    <i className="fa fa-refresh" style={{fontSize: "20px"}}/> Reset
+                </a>
+            </Nav>
+        </Navbar>
+    );
 };
 
 export default Header;
