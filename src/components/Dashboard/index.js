@@ -118,7 +118,9 @@ const Dashboard = props => {
     const showNextContent = (next) => {
         setLoading(true);
         let nextPage = next === "next" ? page + 1 : page - 1;
-        getPaginatedData(nextPage);
+        if (page >= 0) {
+            getPaginatedData(nextPage);
+        }
     }
 
 
