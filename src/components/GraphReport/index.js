@@ -31,7 +31,7 @@ const GraphReport = ({data /* see data tab */}) => (
             legendOffset: -40,
             legendPosition: 'middle'
         }}
-        colors={{scheme: 'nivo'}}
+        colors={{scheme: 'dark2'}}
         pointSize={10}
         pointColor={{theme: 'background'}}
         pointBorderWidth={2}
