@@ -115,6 +115,10 @@ class ApiService {
                 console.log(errorMap);
             })
     }
+
+    clearCacheDb() {
+        this.db.apiCache.clear();
+    }
 }
 
 export default ApiService;

@@ -70,7 +70,7 @@ const ListItem = (props) => {
                             >
                                 <p style={{padding: "8px 0 0 0 !important"}}>{interest.score}</p>
                             </td>
-                            <td style={{padding: "0px"}} onClick={() => props.hide(interest, index)}>
+                            <td style={{padding: "0px"}} onClick={() => props.hide(index, props.page)}>
                                 <i
                                     className="fas fa-eye-slash"
                                     style={{

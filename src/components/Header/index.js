@@ -1,6 +1,7 @@
 import React from "react";
 import {Navbar, Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import algoliaApi from "../../services/algoliaApi";
 
 const Header = ({showLoader}) => {
     return (
@@ -27,13 +28,14 @@ const Header = ({showLoader}) => {
 
             <Nav className="ml-auto">
                 <a
-                    href="/"
+                    href="#"
                     className="source"
                     // target="_blank"
-                    // rel="noopener noreferrer"
+                    rel="noopener noreferrer"
                     style={{textDecoration: "none"}}
+                    onClick={() => algoliaApi.clearCache()}
                 >
-                    <i className="fa fa-refresh" style={{fontSize: "20px"}}/> Reset
+                    <i className="fa fa-refresh" style={{fontSize: "20px"}}/>
                 </a>
             </Nav>
         </Navbar>

@@ -8,6 +8,7 @@ import algoliaApi from "../../services/algoliaApi";
 
 const Dashboard = props => {
     const [state, setState] = useState([]);
+    const [refresh, setRefresh] = useState(0);
     const [page, setPage] = useState(0);
     const [plotData, setPlotData] = useState([{
             "data": []
@@ -59,7 +60,7 @@ const Dashboard = props => {
                 })
             );
         });
-    }, []);
+    }, [refresh]);
 
     //getting all the data ids and storing them in an array
     const getData = async function (category) {
@@ -77,7 +78,6 @@ const Dashboard = props => {
 
     //fetching data from those ids and storing only the necessary datas in an array
     const getDetails = async function (arr) {
-        console.log(arr, "what it is");
         const promises = arr.map(async item => {
             const data = await algoliaApi.getStoryObj(item);
             return {
@@ -109,7 +109,7 @@ const Dashboard = props => {
                 formatComponent(item, () => {
                     setCount(page*20);
                     setLoading(false);
-                    window.scrollTo(0, 0);
+                    // window.scrollTo(0, 0);
                 })
             })
         })
@@ -126,10 +126,15 @@ const Dashboard = props => {
      * @desc business logic
      * @param e
      */
-    const hide = function (index) {
-        algoliaApi.hideElem(this.index, page)
+    const hide = function (index, page) {
+        algoliaApi.hideElem(index, page)
             .then(success => {
-                getPaginatedData(page);
+                if (page === 0) {
+                    let newReferer = refresh + 1;
+                    setRefresh(newReferer);
+                } else {
+                    getPaginatedData(page);
+                }
             });
     }
 

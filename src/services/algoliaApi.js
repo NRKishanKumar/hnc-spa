@@ -18,6 +18,7 @@ algoliaApi.getStoryObj = (objectId) => client.get(`/items/${objectId}`);
 algoliaApi.upVote = (index, page) => client.upVote(index, page);
 algoliaApi.hideElem = (index, page) => client.hideElem(index, page);
 algoliaApi.getByPageNo = (category, pageNumber) => client.get(`/search?tags=${category}&page=${pageNumber}&hitsPerPage=20`)
+algoliaApi.clearCache = () => client.clearCacheDb();
 algoliaApi.getStoriesByPage = (ids, page) => {
     const {begin, end} = getPageSlice(PAGE_LIMIT, page);
     const activeIds = getPageValues({begin, end, items: ids});
