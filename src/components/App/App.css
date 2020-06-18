@@ -82,7 +82,7 @@ table {
 .logo {
     background: #ff6600;
     color: #000000;
-    border: 2px solid #fff;
+    /*border: 2px solid #fff;*/
     padding: 3px;
     padding-left: 10px;
     padding-right: 10px;

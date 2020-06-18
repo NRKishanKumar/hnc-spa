@@ -17,14 +17,14 @@ const Header = ({showLoader}) => {
                 className="fa fa-hacker-news"
                 style={{
                     color: "black",
-                    fontSize: "20px",
+                    fontSize: "30px",
                     marginTop: "5px",
                     padding: "0px",
                     marginRight: "0px"
                 }}
             />
-          </span> <span style={{color: "black", fontWeight: "600"}}>Hacker News</span>
-                    <marquee style={{color: "black"}} direction = "left">Welcome to know the latest news in deep web...</marquee>
+          </span> <span style={{color: "black", fontWeight: "600"}}></span>
+                    <marquee style={{color: "black"}} direction = "left">Welcome to know the Hacker News in deep web...</marquee>
                 </Link>
             </Navbar.Brand>
 
