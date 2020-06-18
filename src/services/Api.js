@@ -40,7 +40,8 @@ class ApiService {
      * @param path
      * @returns {string|Promise<AxiosResponse<any>>}
      */
-    get(path) {
+    get(path, pageNumber) {
+
         return this.db.apiCache.get(path)
             .then(success => {
                 if(success) {

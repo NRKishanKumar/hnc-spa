@@ -118,7 +118,12 @@ const Dashboard = props => {
     const showNextContent = (next) => {
         setLoading(true);
         let nextPage = next === "next" ? page + 1 : page - 1;
-        if (page >= 0) {
+        if (nextPage > 0) {
+            getPaginatedData(nextPage);
+        } else if (nextPage === 0) {
+            let newReferer = refresh + 1;
+            setRefresh(newReferer);
+        } else {
             getPaginatedData(nextPage);
         }
     }
@@ -148,7 +153,12 @@ const Dashboard = props => {
         console.log("upvote", item, fromPage);
         algoliaApi.upVote(item, fromPage)
             .then(success => {
-                getPaginatedData(fromPage);
+                if (page === 0) {
+                    let newReferer = refresh + 1;
+                    setRefresh(newReferer);
+                } else {
+                    getPaginatedData(page);
+                }
             });
     }
 
