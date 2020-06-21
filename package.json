@@ -25,7 +25,8 @@
     "styled-components": "^5.1.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "@babel/plugin-transform-runtime": "^7.10.3"
   },
   "scripts": {
     "start": "npm run build && node index.js",
@@ -57,7 +58,6 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
-    "@babel/plugin-transform-runtime": "^7.10.3",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
