@@ -13,7 +13,7 @@ In the project directory, before you run
 
 ### you can start by:
 
-## `npm start`
+     `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -42,13 +42,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Learn More
 
-To know more, check out the other repos [React documentation](https://reactjs.org/).
+To know more, check out other repos [Visit GitHub](https://github.com/NRKishanKumar/).
 
 ### Making a Progressive Web App
 
 This application uses `bootstrap 4` for responsiveness.
 
-You can access this application via mobile or smaller screens by Adding the app to Home screen from chrome tools.
+You can access this application via mobile or smaller screens by Adding the app to Home screen from chrome-tools.
 
 ### Deployment
 
@@ -56,11 +56,11 @@ This section lets you understand the steps for deployment.
 
 Commit all your changes before proceeding
 
-$ Add heroku remote with a new app.
+`$ heroku git:remote -a` <app-name>
 
-$ git push heroku master
+`$ git push heroku master`
 
-$ heroku open
+`$ heroku open`
 
 ### `heroku local` fails to minify
 
