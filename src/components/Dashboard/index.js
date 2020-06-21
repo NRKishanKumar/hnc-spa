@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {withRouter} from "react-router-dom";
 import Stories from "../ListItem";
 import Loader from "../Loader";
-import "./styles.css"
 import GraphReport from "../GraphReport";
 import algoliaApi from "../../services/algoliaApi";
 
@@ -21,7 +19,7 @@ const Dashboard = props => {
     //setting different api params for different routes
     const checkRoute = () => {
         let route;
-        switch (props.location.pathname) {
+        switch (route) {
             case "/poll":
                 route = "poll"
                 break;
@@ -201,4 +199,4 @@ const Dashboard = props => {
     );
 };
 
-export default withRouter(Dashboard);
+export default Dashboard;

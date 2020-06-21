@@ -2,9 +2,12 @@ import React, {useState} from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import Dashboard from "../Dashboard";
-import "./App.css";
-import {Route, Switch, BrowserRouter as Router} from "react-router-dom";
 
+/**
+ * @desc bootstrap app for routing and initializing application
+ * @returns {*}
+ * @constructor
+ */
 const App = () => {
     const [isLoading, setLoadingState] = useState(true);
 
@@ -16,26 +19,17 @@ const App = () => {
     };
 
     return (
-        <Router>
+        <div>
             <Header showLoader={showLoader}/>
-            <Switch>
                 <>
-                    <Route
-                        exact
-                        key="home"
-                        path="/"
-                        render={() => (
-                            <Dashboard
-                                isLoading={isLoading}
-                                hideLoader={hideLoader}
-                                showLoader={showLoader}
-                            />
-                        )}
+                    <Dashboard
+                        isLoading={isLoading}
+                        hideLoader={hideLoader}
+                        showLoader={showLoader}
                     />
                 </>
-            </Switch>
             <Footer/>
-        </Router>
+        </div>
     );
 };
 

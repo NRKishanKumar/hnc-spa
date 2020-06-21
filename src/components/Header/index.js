@@ -7,8 +7,8 @@ const Header = ({showLoader}) => {
     return (
         <Navbar style={{backgroundColor: " #ff6600"}}>
             <Navbar.Brand href="#home" style={{color: "#fff"}}>
-                <Link
-                    to="/"
+                <a
+                    href="/"
                     style={{color: "#fff", textDecoration: "none"}}
                     onClick={showLoader}
                 >
@@ -25,7 +25,7 @@ const Header = ({showLoader}) => {
             />
           </span> <span style={{color: "black", fontWeight: "600"}}></span>
                     <marquee style={{color: "black"}} direction = "left">Welcome to know the Hacker News in deep web...</marquee>
-                </Link>
+                </a>
             </Navbar.Brand>
 
             <Nav className="ml-auto">
