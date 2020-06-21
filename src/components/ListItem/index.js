@@ -41,8 +41,10 @@ const ListItem = (props) => {
                         <p>{" Comments "}</p>
                     </td>
                 </React.Fragment>
-                <td style={{margin: "0px 15px 0 15px", width: "auto",
-                    display: "inline-block"}}>
+                <td style={{
+                    margin: "0px 15px 0 15px", width: "auto",
+                    display: "inline-block"
+                }}>
                     <p>Hide</p>
                 </td>
             </tr>
@@ -57,20 +59,23 @@ const ListItem = (props) => {
                                     color: "black",
                                     display: "inline-block"
                                 }} className="btn btn-sm btn-warning">
-                                <i
-                                    className="fas fa-sort-up"
-                                    style={{
-                                        display: "inline",
-                                        float: "left",
-                                        fontSize: "20px",
-                                        padding: "0px",
-                                        marginRight: "5px",
-                                        color: "black"
-                                    }}
-                                /><div  style={{
-                                    color: "black",
-                                    display: "inline"
-                                }}>Vote</div></button>
+                                    <i
+                                        className="fas fa-sort-up"
+                                        style={{
+                                            display: "inline",
+                                            float: "left",
+                                            fontSize: "20px",
+                                            padding: "0px",
+                                            marginRight: "5px",
+                                            color: "black"
+                                        }}
+                                    />
+                                    <div style={{
+                                        color: "black",
+                                        display: "inline"
+                                    }}>Vote
+                                    </div>
+                                </button>
                             </td>
                             <td
                                 style={{
@@ -99,15 +104,15 @@ const ListItem = (props) => {
                                 <td style={{color: "#828282"}}>
                                     <i className="fas fa-globe"/>{" "}
                                     <a className="truncate"
-                                        href={`https://${
-                                            url
-                                                .replace("http://", "")
-                                                .replace("https://", "")
-                                                .split(/[/?#]/)[0]
-                                        }`}
-                                        target="_blank"
-                                        style={{color: "#828282"}}
-                                        rel="noopener noreferrer"
+                                       href={`https://${
+                                           url
+                                               .replace("http://", "")
+                                               .replace("https://", "")
+                                               .split(/[/?#]/)[0]
+                                       }`}
+                                       target="_blank"
+                                       style={{color: "#828282"}}
+                                       rel="noopener noreferrer"
                                     >
                                         {url
                                             .replace("http://", "")
@@ -135,20 +140,23 @@ const ListItem = (props) => {
                                 <button type="button" style={{
                                     color: "black"
                                 }} className="btn btn-sm btn-info">
-                                <i
-                                    className="fas fa-eye-slash"
-                                    style={{
+                                    <i
+                                        className="fas fa-eye-slash"
+                                        style={{
+                                            color: "black",
+                                            display: "inline",
+                                            float: "left",
+                                            fontSize: "20px",
+                                            padding: "0px",
+                                            marginRight: "5px"
+                                        }}
+                                    />
+                                    <div style={{
                                         color: "black",
-                                        display: "inline",
-                                        float: "left",
-                                        fontSize: "20px",
-                                        padding: "0px",
-                                        marginRight: "5px"
-                                    }}
-                                /><div  style={{
-                                    color: "black",
-                                    display: "inline"
-                                }}>Hide</div></button>
+                                        display: "inline"
+                                    }}>Hide
+                                    </div>
+                                </button>
                             </td>
                         </tr>
                     )

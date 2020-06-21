@@ -16,21 +16,21 @@ app.disable('x-powered-by');
 app.listen(process.env.PORT || 3000);
 
 let initialState = {
-  isFetching: false,
-  apps: {}
+    isFetching: false,
+    apps: {}
 }
 
 // server rendered home page
 app.get('/', (req, res) => {
-  const { preloadedState, content}  = ssr(initialState)
-  const response = template("Server Rendered Page", preloadedState, content)
-  res.setHeader('Cache-Control', 'assets, max-age=604800')
-  res.send(response);
+    const {preloadedState, content} = ssr(initialState)
+    const response = template("Server Rendered Page", preloadedState, content)
+    res.setHeader('Cache-Control', 'assets, max-age=604800')
+    res.send(response);
 });
 
 // Pure client side rendered page
 app.get('/client', (req, res) => {
-  let response = template('Client Side Rendered page')
-  res.setHeader('Cache-Control', 'assets, max-age=604800')
-  res.send(response)
+    let response = template('Client Side Rendered page')
+    res.setHeader('Cache-Control', 'assets, max-age=604800')
+    res.send(response)
 });

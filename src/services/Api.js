@@ -26,7 +26,6 @@ class ApiService {
     }
 
 
-
     handleSuccess(response) {
         return response;
     }
@@ -44,7 +43,7 @@ class ApiService {
 
         return this.db.apiCache.get(path)
             .then(success => {
-                if(success) {
+                if (success) {
                     return JSON.parse(success.data);
                 } else {
                     return this.client.get(path).then(response => {
@@ -77,7 +76,7 @@ class ApiService {
     }
 
     async hideElem(index, pageNo) {
-        let query = pageNo === 0 ? "/search?tags=story" :`/search?tags=story&page=${pageNo}&hitsPerPage=20`;
+        let query = pageNo === 0 ? "/search?tags=story" : `/search?tags=story&page=${pageNo}&hitsPerPage=20`;
         return this.db.apiCache.get(query)
             .then(response => {
                 if (response) {
@@ -104,7 +103,7 @@ class ApiService {
                     let upVoter = JSON.parse(response.data);
                     ++upVoter.points;
 
-                   return this.db.apiCache.put({
+                    return this.db.apiCache.put({
                         "id": query,
                         "data": JSON.stringify(upVoter)
                     }).then(async res => {

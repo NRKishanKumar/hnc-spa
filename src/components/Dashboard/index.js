@@ -9,8 +9,8 @@ const Dashboard = props => {
     const [refresh, setRefresh] = useState(0);
     const [page, setPage] = useState(0);
     const [plotData, setPlotData] = useState([{
-            "data": []
-        }]);
+        "data": []
+    }]);
     const [count, setCount] = useState(20);
     const [isLoading, setLoading] = useState(false);
 
@@ -105,7 +105,7 @@ const Dashboard = props => {
             setPage(arr.page);
             getDetails(itemsIds).then(item => {
                 formatComponent(item, () => {
-                    setCount(page*20);
+                    setCount(page * 20);
                     setLoading(false);
                     // window.scrollTo(0, 0);
                 })
@@ -182,10 +182,13 @@ const Dashboard = props => {
                     </div>
                     <div className="text-center m-1">
             <span onClick={() => showNextContent("prev")}>
-              <a href="#" className="previous">&laquo; Previous</a>
+              <a href="#" className="previousPageIn round">&laquo; Previous</a>
             </span>
                         <span onClick={() => showNextContent("next")}>
-              <a href="#" className="next">Next &raquo;</a>
+              <a href="#" className="">&nbsp;&nbsp;</a>
+            </span>
+                        <span onClick={() => showNextContent("next")}>
+              <a href="#" className="nextPageOut round">Next &raquo;</a>
             </span>
                     </div>
                     <div style={{

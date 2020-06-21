@@ -24,7 +24,8 @@ const Header = ({showLoader}) => {
                 }}
             />
           </span> <span style={{color: "black", fontWeight: "600"}}></span>
-                    <marquee style={{color: "black"}} direction = "left">Welcome to know the Hacker News in deep web...</marquee>
+                    <marquee style={{color: "black"}} direction="left">Welcome to know the Hacker News in deep web...
+                    </marquee>
                 </a>
             </Navbar.Brand>
 

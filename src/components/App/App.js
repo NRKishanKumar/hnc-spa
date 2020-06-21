@@ -21,13 +21,13 @@ const App = () => {
     return (
         <div>
             <Header showLoader={showLoader}/>
-                <>
-                    <Dashboard
-                        isLoading={isLoading}
-                        hideLoader={hideLoader}
-                        showLoader={showLoader}
-                    />
-                </>
+            <>
+                <Dashboard
+                    isLoading={isLoading}
+                    hideLoader={hideLoader}
+                    showLoader={showLoader}
+                />
+            </>
             <Footer/>
         </div>
     );

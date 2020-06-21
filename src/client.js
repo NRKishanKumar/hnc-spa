@@ -21,9 +21,9 @@ const store = configureStore(state)
  */
 
 hydrate(
-  <Provider store={store} >
-      <GlobalStyles/>
-     <App />
-  </Provider>,
-  document.querySelector('#app')
+    <Provider store={store}>
+        <GlobalStyles/>
+        <App/>
+    </Provider>,
+    document.querySelector('#app')
 )

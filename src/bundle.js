@@ -8,9 +8,9 @@ import GlobalStyles from "./styles/global";
 const store = configureStore()
 
 render(
-  <Provider store={store} >
-      <GlobalStyles/>
-      <App />
-  </Provider>,
-  document.querySelector('#app')
+    <Provider store={store}>
+        <GlobalStyles/>
+        <App/>
+    </Provider>,
+    document.querySelector('#app')
 )
