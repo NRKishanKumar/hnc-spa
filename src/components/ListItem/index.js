@@ -24,10 +24,6 @@ const ListItem = (props) => {
                 >
                     <p>Votes</p>
                 </td>
-                <td style={{margin: "0px 15px 0 15px", width: "auto",
-                display: "inline-block"}}>
-                    <p>Hide</p>
-                </td>
                 <td style={{paddingRight: "80px", fontWeight: "500"}}>
                     <p>Story title</p>
                 </td>
@@ -45,23 +41,36 @@ const ListItem = (props) => {
                         <p>{" Comments "}</p>
                     </td>
                 </React.Fragment>
+                <td style={{margin: "0px 15px 0 15px", width: "auto",
+                    display: "inline-block"}}>
+                    <p>Hide</p>
+                </td>
             </tr>
             {state.map(
                 (interest, index) => {
                     const {item, author, title, comments_count, time, url} = interest;
                     return (
                         <tr key={item}>
-                            <td style={{padding: "0px"}} onClick={() => props.upVote(item,
+                            <td style={{padding: "5px", textAlign: "center"}} onClick={() => props.upVote(item,
                                 props.page)}>
+                                <button type="button" style={{
+                                    color: "black",
+                                    display: "inline-block"
+                                }} className="btn btn-sm btn-warning">
                                 <i
                                     className="fas fa-sort-up"
                                     style={{
-                                        fontSize: "30px",
-                                        marginTop: "16px",
+                                        display: "inline",
+                                        float: "left",
+                                        fontSize: "20px",
                                         padding: "0px",
-                                        marginRight: "10px"
+                                        marginRight: "5px",
+                                        color: "black"
                                     }}
-                                />
+                                /><div  style={{
+                                    color: "black",
+                                    display: "inline"
+                                }}>Vote</div></button>
                             </td>
                             <td
                                 style={{
@@ -69,18 +78,6 @@ const ListItem = (props) => {
                                 }}
                             >
                                 <p style={{padding: "8px 0 0 0 !important"}}>{interest.score}</p>
-                            </td>
-                            <td style={{padding: "0px"}} onClick={() => props.hide(index, props.page)}>
-                                <i
-                                    className="fas fa-eye-slash"
-                                    style={{
-                                        fontSize: "20px",
-                                        marginTop: "16px",
-                                        padding: "0px",
-                                        marginRight: "15px",
-                                        marginLeft: "15px"
-                                    }}
-                                />
                             </td>
                             <td style={{paddingRight: "50px", fontWeight: "600", width: "30%"}}>
                                 <a className="truncate" href={url} target="_blank" rel="noopener noreferrer">
@@ -134,6 +131,25 @@ const ListItem = (props) => {
                                     </a>
                                 </td>
                             </React.Fragment>
+                            <td style={{padding: "0px"}} onClick={() => props.hide(index, props.page)}>
+                                <button type="button" style={{
+                                    color: "black"
+                                }} className="btn btn-sm btn-info">
+                                <i
+                                    className="fas fa-eye-slash"
+                                    style={{
+                                        color: "black",
+                                        display: "inline",
+                                        float: "left",
+                                        fontSize: "20px",
+                                        padding: "0px",
+                                        marginRight: "5px"
+                                    }}
+                                /><div  style={{
+                                    color: "black",
+                                    display: "inline"
+                                }}>Hide</div></button>
+                            </td>
                         </tr>
                     )
                 }
