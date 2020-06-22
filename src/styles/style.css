@@ -668,7 +668,7 @@
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    top: 150%;
+    bottom: 150%;
     left: 50%;
     margin-left: -60px;
 }
@@ -676,12 +676,12 @@
 .tooltipm .tooltiptext::after {
     content: "";
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent black transparent;
+    border-color: black transparent transparent transparent;
 }
 
 .tooltipm:hover .tooltiptext {

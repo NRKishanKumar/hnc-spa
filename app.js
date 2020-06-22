@@ -23,14 +23,14 @@ let initialState = {
 // server rendered home page
 app.get('/', (req, res) => {
     const {preloadedState, content} = ssr(initialState)
-    const response = template("Server Rendered Page", preloadedState, content)
+    const response = template("HackerNews", preloadedState, content)
     res.setHeader('Cache-Control', 'assets, max-age=604800')
     res.send(response);
 });
 
 // Pure client side rendered page
 app.get('/client', (req, res) => {
-    let response = template('Client Side Rendered page')
+    let response = template('HackerNews')
     res.setHeader('Cache-Control', 'assets, max-age=604800')
     res.send(response)
 });
