@@ -32,7 +32,7 @@ const Footer = () => {
                             href="https://www.linkedin.com/in/kishannr/"
                             target="_blank"
                             rel="noopener noreferrer">
-                            <i className="fa fa-google"></i></a>
+                            <i className="fa fa-linkedin"></i></a>
 
                         <a className="btn skype" href="https://join.skype.com/invite/aILPw6d9ohkd"
                            target="_blank"

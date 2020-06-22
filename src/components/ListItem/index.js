@@ -19,6 +19,8 @@ const ListItem = (props) => {
         props.doneVote(item, page, index, score);
     }
 
+    const TimeAgo = ({ time }) =>
+        <time datetime={new Date(time).toISOString()}>{timeago(time)}</time>
 
     return (
         <>
@@ -44,7 +46,7 @@ const ListItem = (props) => {
                         <p>{" Source  "}</p>
                     </td>
                     <td style={{color: "#212529"}}>
-                        <p>{" Dated on "}</p>
+                        <p>{" When "}</p>
                     </td>
                     <td style={{color: "#212529"}}>
                         <p>{" Comments "}</p>
@@ -60,6 +62,7 @@ const ListItem = (props) => {
             {state.map(
                 (interest, index) => {
                     const {item, author, title, comments_count, time, url, score} = interest;
+                    const epochTimeStamp = new Date(time);
                     return (
                         <tr key={item}>
                             <td style={{padding: "5px", textAlign: "center"}}>
@@ -104,7 +107,7 @@ const ListItem = (props) => {
                             </td>
                             <React.Fragment className="info">
                                 <td style={{color: "#828282"}}>
-                                    <i className="fas fa-user"/>{" "}
+                                    <i className="fas fa-user-secret"/>{" "}
                                     <a
                                         href={`https://news.ycombinator.com/user?id=${author}`}
                                         target="_blank"
@@ -115,7 +118,7 @@ const ListItem = (props) => {
                                     </a>
                                 </td>
                                 <td style={{color: "#828282"}}>
-                                    <i className="fas fa-globe"/>{" "}
+                                    <i className="fa"/>{" "}
                                     <a className="truncate"
                                        href={`https://${
                                            url
@@ -135,7 +138,8 @@ const ListItem = (props) => {
                                     </a>
                                 </td>
                                 <td style={{color: "#828282"}}>
-                                    <i className="fas fa-clock"> {time}</i>
+                                    {/*<i className="fas fa-clock"></i>*/}
+                                    <TimeAgo time={epochTimeStamp} />
                                 </td>
                                 <td style={{color: "#828282"}}>
                                     <i className="far fa-comment-alt"/>{" "}

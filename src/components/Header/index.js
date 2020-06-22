@@ -28,19 +28,6 @@ const Header = ({showLoader}) => {
                     </marquee>
                 </a>
             </Navbar.Brand>
-
-            <Nav className="ml-auto">
-                <a
-                    href="#"
-                    className="source"
-                    // target="_blank"
-                    rel="noopener noreferrer"
-                    style={{textDecoration: "none"}}
-                    onClick={() => algoliaApi.clearCache()}
-                >
-                    <i className="fa fa-refresh" style={{fontSize: "20px"}}/>
-                </a>
-            </Nav>
         </Navbar>
     );
 };
