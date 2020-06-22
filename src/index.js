@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles/index.css";
+import "./styles/App.css";
+import "./styles/style.css";
 import GlobalStyles from "./styles/global";
 import "bootstrap/dist/css/bootstrap.css";
 import App from './components/App/index';

@@ -1,5 +1,4 @@
 import ApiService from "./Api";
-import axios from "axios";
 
 const BASE_URL = "https://hn.algolia.com/api/v1";
 const client = new ApiService({baseURL: BASE_URL})
@@ -15,7 +14,7 @@ algoliaApi.getTopStoryIds = () => client.get(`/search?tags=topstories${JSON_QUER
 algoliaApi.getStory = (id) => client.get(`/item/${id}${JSON_QUERY}`);
 algoliaApi.getStoryByType = (category) => client.get(`/search?tags=${category}`);
 algoliaApi.getStoryObj = (objectId) => client.get(`/items/${objectId}`);
-algoliaApi.upVote = (index, page) => client.upVote(index, page);
+algoliaApi.upVote = (index, page, counter = undefined) => client.upVote(index, page, counter);
 algoliaApi.hideElem = (index, page) => client.hideElem(index, page);
 algoliaApi.getByPageNo = (category, pageNumber) => client.get(`/search?tags=${category}&page=${pageNumber}&hitsPerPage=20`)
 algoliaApi.clearCache = () => client.clearCacheDb();

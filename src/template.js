@@ -15,6 +15,8 @@ export default function template(title, initialState = {}, content = "") {
               <head>
                 <meta charset="utf-8">
                 <title> ${title} </title>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="theme-color" content="#000000"/>
                 <link href="assets/style.css" rel="stylesheet">
                 <link href="assets/index.css" rel="stylesheet">
                 <link href="assets/App.css" rel="stylesheet">

@@ -95,14 +95,17 @@ class ApiService {
             })
     }
 
-    upVote(itemId, pageNo) {
+    upVote(itemId, pageNo, counter) {
         let query = `/items/${itemId}`;
         return this.db.apiCache.get(query)
             .then(response => {
                 if (response) {
                     let upVoter = JSON.parse(response.data);
-                    ++upVoter.points;
-
+                    if (counter) {
+                        upVoter.points = counter;
+                    } else {
+                        ++upVoter.points;
+                    }
                     return this.db.apiCache.put({
                         "id": query,
                         "data": JSON.stringify(upVoter)

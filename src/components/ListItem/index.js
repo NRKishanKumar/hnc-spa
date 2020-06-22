@@ -7,8 +7,17 @@ const ListItem = (props) => {
     const [state, setState] = useState(props.state);
 
     useEffect(() => {
+        console.log(state)
         setState(props.state);
-    }, [props])
+    }, [props.state])
+
+    const upVote = (item, page, index) => {
+        props.upVote(item, page, index)
+    }
+
+    const doneVote = (item, page, index, score) => {
+        props.doneVote(item, page, index, score);
+    }
 
 
     return (
@@ -50,15 +59,18 @@ const ListItem = (props) => {
             </tr>
             {state.map(
                 (interest, index) => {
-                    const {item, author, title, comments_count, time, url} = interest;
+                    const {item, author, title, comments_count, time, url, score} = interest;
                     return (
                         <tr key={item}>
-                            <td style={{padding: "5px", textAlign: "center"}} onClick={() => props.upVote(item,
-                                props.page)}>
+                            <td style={{padding: "5px", textAlign: "center"}}>
                                 <button type="button" style={{
                                     color: "black",
                                     display: "inline-block"
-                                }} className="btn btn-sm btn-warning">
+                                }} className="btn btn-sm btn-warning"
+                                        onMouseDownCapture={() => upVote(item, props.page, index)}
+                                        onMouseUpCapture={() => doneVote(item, props.page, index, score)}
+
+                                >
                                     <i
                                         className="fas fa-sort-up"
                                         style={{
@@ -70,10 +82,11 @@ const ListItem = (props) => {
                                             color: "black"
                                         }}
                                     />
-                                    <div style={{
+                                    <div className="tooltipm" style={{
                                         color: "black",
                                         display: "inline"
                                     }}>Vote
+                                        <span className="tooltiptext">Press & hold for unlimited votes</span>
                                     </div>
                                 </button>
                             </td>

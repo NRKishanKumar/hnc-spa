@@ -5,6 +5,7 @@ import GraphReport from "../GraphReport";
 import algoliaApi from "../../services/algoliaApi";
 
 const Dashboard = props => {
+
     const [state, setState] = useState([]);
     const [refresh, setRefresh] = useState(0);
     const [page, setPage] = useState(0);
@@ -12,6 +13,12 @@ const Dashboard = props => {
         "data": []
     }]);
     const [count, setCount] = useState(20);
+    const [isValidVote, setIsValidVote] = useState(true);
+    const [next, setNext] = useState(false);
+    const [vote, setVote] = useState({
+        item: -1, page: -1, index: -1
+    })
+    const [statusInterval, setIntervalState] = useState(undefined);
     const [isLoading, setLoading] = useState(false);
 
     //a global index to keep track of the all showed items
@@ -54,6 +61,7 @@ const Dashboard = props => {
         getData(checkRoute()).then(arr => {
             getDetails(arr).then(item =>
                 formatComponent(item, () => {
+                    setLoading(false);
                     props.hideLoader();
                 })
             );
@@ -64,6 +72,7 @@ const Dashboard = props => {
     const getData = async function (category) {
         const arr = [];
         try {
+            console.log("getDAta calling")
             let response = await algoliaApi.getStoryByType(category)
             setPage(response.page);
             response && response.hits.map(item => arr.push(item.objectID));
@@ -76,7 +85,7 @@ const Dashboard = props => {
 
     //fetching data from those ids and storing only the necessary datas in an array
     const getDetails = async function (arr) {
-        const promises = arr.map(async item => {
+        const promises = arr && arr.map(async item => {
             const data = await algoliaApi.getStoryObj(item);
             return {
                 item,
@@ -122,7 +131,7 @@ const Dashboard = props => {
             let newReferer = refresh + 1;
             setRefresh(newReferer);
         } else {
-            getPaginatedData(nextPage);
+            setLoading(false);
         }
     }
 
@@ -144,12 +153,15 @@ const Dashboard = props => {
     }
 
     /**
-     * @desc business logic
-     * @param e
+     * @desc persist the votes in interceptor cache
+     * @param item
+     * @param fromPage
+     * @param index
+     * @param counter
      */
-    const upVote = function (item, fromPage) {
-        console.log("upvote", item, fromPage);
-        algoliaApi.upVote(item, fromPage)
+    const doneVote = (item, fromPage, index, counter) => {
+        setIsValidVote(true);
+        algoliaApi.upVote(item, fromPage, counter)
             .then(success => {
                 if (page === 0) {
                     let newReferer = refresh + 1;
@@ -158,6 +170,52 @@ const Dashboard = props => {
                     getPaginatedData(page);
                 }
             });
+    };
+
+    useEffect(() => {
+        let timer;
+        if (!isValidVote) {
+            timer = setTimeout(() => {
+                setNext(next + 1);
+            }, 500);
+        }
+        return () => clearTimeout(timer);
+    }, [state])
+
+    useEffect(() => {
+        if (!isValidVote && vote.index > -1) {
+            let newState = state.slice(0);
+            if (newState && newState.length && (vote.index > -1)) {
+                ++newState[vote.index].score;
+                formatComponent(newState, () => {
+                    //setState(newState);
+                });
+            }
+        }
+    }, [next])
+
+    useEffect(() => {
+        if (!isValidVote) {
+            setNext(next + 1);
+        }
+    }, [isValidVote])
+
+    useEffect(() => {
+        if (vote.index > -1) {
+            setIsValidVote(false);
+        }
+    }, [vote])
+
+
+    /**
+     * @desc business logic
+     * @param e
+     */
+    const upVote = function (item, fromPage, index) {
+        console.log(item, fromPage, index, "idy");
+        setVote({
+            item, page: fromPage, index
+        })
     }
 
     //return statement
@@ -176,20 +234,21 @@ const Dashboard = props => {
                     >
                         <table className="table">
                             <tbody>
-                            <Stories state={state} page={page} upVote={upVote} hide={hide}/>
+                            <Stories state={state} page={page} upVote={upVote} doneVote={doneVote} hide={hide}/>
                             </tbody>
                         </table>
                     </div>
                     <div className="text-center m-1">
-            <span onClick={() => showNextContent("prev")}>
-              <a href="#" className="previousPageIn round">&laquo; Previous</a>
-            </span>
+                        <button className="btn btn-dark previousPageIn round"
+                                onClick={() => showNextContent("prev")}>
+                            &laquo; Previous
+                        </button>
                         <span onClick={() => showNextContent("next")}>
-              <a href="#" className="">&nbsp;&nbsp;</a>
-            </span>
-                        <span onClick={() => showNextContent("next")}>
-              <a href="#" className="nextPageOut round">Next &raquo;</a>
-            </span>
+                            <a href="#" className="">&nbsp;&nbsp;</a>
+                        </span>
+                        <button className="btn btn-dark nextPageOut round" onClick={() => showNextContent("next")}>
+                            Next &raquo;
+                        </button>
                     </div>
                     <div style={{
                         height: "50vh"
