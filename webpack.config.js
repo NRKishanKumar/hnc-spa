@@ -4,7 +4,6 @@ module.exports = {
     mode: 'development',
     entry: {
         client: './src/client.js',
-        bundle: './src/bundle.js'
     },
     output: {
         path: path.resolve(__dirname, 'assets'),

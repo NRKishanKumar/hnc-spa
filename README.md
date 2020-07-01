@@ -2,6 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### [Try Live demo of this app: Click here to access this application live](https://hnc-spa.herokuapp.com/)
 
+### Server Side rendering
+
+The Virtual DOM can be kept or prepared ahead of time by using Webpack and Babel configuration, reducing the load time when users lands in the webpage.
+
+
 ## Available Scripts
 
 In the project directory, before you run
